@@ -1,0 +1,103 @@
+<html>
+    <meta charset="utf-8">
+<head>
+    <style>
+    </style>
+   
+</head>
+<body>
+    
+    <div style="margin:0 auto;height: 90%;text-align: center;"> 
+    <h2>誰先贏10次就贏</h2>
+    <p id="win_cnt"></p>
+    <p id="com_win"></p> 
+    <button onclick="game('scssiors')"><img style="height: 100px;"src="https://data.silhouette-ac.com/data/thumbnails/d9/d949570c3572d4173e309d96a0f9ff03_w.jpeg" alt=""></button>
+    <button onclick="game('stone')"><img style="height: 100px "src="https://data.silhouette-ac.com/data/thumbnails/6e/6e8bf918245f42321ba8d85e6081c17a_w.jpeg" alt=""></button>
+    <button onclick="game('paper')"><img style="height: 100px" src="https://data.silhouette-ac.com/data/thumbnails/5c/5c3d5e32455577a92b7830e5c9c30b18_w.jpeg" alt=""></button>
+    <div id="minehit"></div> 
+    <div id="comhit"></div>
+    
+    
+    <p id='p0'></p>
+    <p id='p1'></p>
+    </div>
+<script>
+    var win_cnt=0;
+    var com_win=0;
+    function game(va)
+    {
+        document.getElementById('win_cnt').innerHTML="我贏的次數："+win_cnt
+        document.getElementById('com_win').innerHTML="電腦贏的次數："+com_win
+        // document.getElementById('p1').innerHTML="Hello"
+        console.log(va) 
+        
+        var ran=Math.random()
+        var com
+        if(ran<1/3)
+        {
+            com='scssiors'
+            document.getElementById('p0').innerHTML="電腦出剪刀"
+        }
+        else if(ran<2/3)
+        {
+            com='paper'
+            document.getElementById('p0').innerHTML="電腦出布"
+        }
+        else
+        {
+            com='stone'
+            document.getElementById('p0').innerHTML="電腦出石頭"
+        }
+        document.getElementById('minehit').innerHTML=pic(va)+ "</br> VS"
+        document.getElementById('comhit').innerHTML=pic(com)
+        if(com==va)
+        {
+            document.getElementById('p1').innerHTML="平手"
+        }
+        else if((com == 'scssiors' & va=='stone')||(com == 'stone' & va=='paper')||(com == 'paper' & va=='scssiors'))
+        {
+            document.getElementById('p1').innerHTML="贏了"
+            win_cnt++
+        }
+        else
+        {
+           document.getElementById('p1').innerHTML="輸了QQ"
+           com_win++
+        }
+        document.getElementById('win_cnt').innerHTML="我贏的次數："+win_cnt
+        document.getElementById('com_win').innerHTML="電腦贏的次數："+com_win
+        if(win_cnt>=10)
+        {
+            setTimeout( function(){ alert('你贏了~') }, 1);
+            // alert('你贏了~')
+            win_cnt=0
+            com_win=0
+
+        
+        }
+        else if(com_win>=10)
+        {
+            setTimeout( function(){ alert('電腦贏了~') }, 1);
+            // alert('電腦贏了~')
+            win_cnt=0
+            com_win=0
+        }
+        function pic(hit)
+        {
+            if(hit=='paper')
+            {
+            return '<img style="height: 100px" src="https://data.silhouette-ac.com/data/thumbnails/5c/5c3d5e32455577a92b7830e5c9c30b18_w.jpeg" alt="">'
+            }
+            else if(hit=='scssiors')
+            {
+                return '<img style="height: 100px;"src="https://data.silhouette-ac.com/data/thumbnails/d9/d949570c3572d4173e309d96a0f9ff03_w.jpeg" alt="">'
+            }
+            else
+            {
+                return '<img style="height: 100px "src="https://data.silhouette-ac.com/data/thumbnails/6e/6e8bf918245f42321ba8d85e6081c17a_w.jpeg" alt="">';
+            }
+        }
+    }
+</script>
+</body>
+</html>
